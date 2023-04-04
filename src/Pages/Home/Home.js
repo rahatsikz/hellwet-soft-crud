@@ -1,7 +1,16 @@
 import React from "react";
 import "./Home.css";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+  const handleToSignUP = () => {
+    navigate("/register");
+  };
+  const handleToLogin = () => {
+    navigate("/login");
+  };
+
   return (
     <section>
       <div className="wrapper">
@@ -26,7 +35,7 @@ const Home = () => {
         <div className="flex flex-col lg:flex-row lg:h-auto h-64 w-1/3 mx-auto mt-8 buttons">
           <div className="grid flex-grow card rounded-box place-items-center">
             <div className="btn-custom">
-              <button className="btn-1">
+              <button onClick={handleToSignUP} className="btn-1">
                 Sign Up
                 <span></span>
                 <span></span>
@@ -40,7 +49,7 @@ const Home = () => {
           </div>
           <div className=" grid flex-grow card rounded-box place-items-center lg:-mt-0 -mt-6">
             <div className="btn-custom">
-              <button className="btn-2">
+              <button onClick={handleToLogin} className="btn-2">
                 Log in
                 <span></span>
                 <span></span>
