@@ -1,7 +1,47 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../context/AuthProvider";
+import { useContext } from "react";
+import { useState } from "react";
 
 const Login = () => {
+  const { login, googleLogin } = useContext(AuthContext);
+  const [errormsg, setErrormsg] = useState("");
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/todos";
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    setErrormsg("");
+
+    // console.log(email, password);
+    login(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error(error);
+        setErrormsg(error.message);
+      });
+  };
+  const handleGoogle = () => {
+    googleLogin()
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        navigate(from, { replace: true });
+      })
+      .catch((error) => {
+        console.error(error);
+        setErrormsg(error.message);
+      });
+  };
   return (
     <div className="w-9/12 lg:w-8/12 mx-auto">
       <div class="h-screen">
@@ -15,8 +55,16 @@ const Login = () => {
               />
             </div>
 
-            <div className="mt-12 w-2/3 lg:w-4/12">
-              <form>
+            <div className=" w-2/3 lg:w-4/12">
+              <div className="my-8">
+                <h2
+                  className="text-center text-4xl text-[#2879E1] font-display font-semibold lg:text-left xl:text-5xl
+                    xl:text-bold"
+                >
+                  Sign in
+                </h2>
+              </div>
+              <form onSubmit={handleLogin}>
                 <div>
                   <div className="text-sm font-bold text-gray-700 tracking-wide">
                     Email Address
@@ -52,10 +100,13 @@ const Login = () => {
                   </button>
                 </div>
               </form>
-
+              {errormsg && (
+                <p className="text-error text-center my-4"> {errormsg} </p>
+              )}
               <div className="divider my-8">OR</div>
               <div className="mt-10">
                 <button
+                  onClick={handleGoogle}
                   className="bg-white border text-gray-700 p-4 w-full rounded-full tracking-wide
                                 font-semibold font-display focus:outline-none focus:shadow-outline hover:text-[#2879E1]
                                 shadow-lg flex items-center justify-center"

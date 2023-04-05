@@ -1,14 +1,23 @@
 import React from "react";
 import "./Home.css";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../../context/AuthProvider";
 
 const Home = () => {
+  const { user, logOut } = useContext(AuthContext);
+
   const navigate = useNavigate();
   const handleToSignUP = () => {
     navigate("/register");
   };
   const handleToLogin = () => {
     navigate("/login");
+  };
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {})
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -32,7 +41,7 @@ const Home = () => {
           </h1>
         </div>
 
-        <div className="flex flex-col lg:flex-row lg:h-auto h-64 w-1/3 mx-auto mt-8 buttons">
+        {/* <div className="flex flex-col lg:flex-row lg:h-auto h-64 w-1/3 mx-auto mt-8 buttons">
           <div className="grid flex-grow card rounded-box place-items-center">
             <div className="btn-custom">
               <button onClick={handleToSignUP} className="btn-1">
@@ -58,7 +67,46 @@ const Home = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
+        {user?.uid ? (
+          <div className="btn-custom mt-8 buttons">
+            <button onClick={handleLogOut} className="btn-1">
+              Log Out
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        ) : (
+          <div className="flex flex-col lg:flex-row lg:h-auto h-64 w-1/3 mx-auto mt-8 buttons">
+            <div className="grid flex-grow card rounded-box place-items-center">
+              <div className="btn-custom">
+                <button onClick={handleToSignUP} className="btn-1">
+                  Sign Up
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
+            </div>
+            <div className="divider self-center text-[#f5f3f2] font-semibold ">
+              OR
+            </div>
+            <div className=" grid flex-grow card rounded-box place-items-center lg:-mt-0 -mt-6">
+              <div className="btn-custom">
+                <button onClick={handleToLogin} className="btn-2">
+                  Log in
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </section>
   );
