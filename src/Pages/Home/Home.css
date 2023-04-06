@@ -158,7 +158,8 @@ button span {
   position: absolute;
   display: block;
 }
-button span:nth-child(1) {
+.btn-1 span:nth-child(1),
+.btn-2 span:nth-child(1) {
   height: 3px;
   width: 200px;
   top: 0px;
@@ -178,7 +179,8 @@ button span:nth-child(1) {
     left: 200px;
   }
 }
-button span:nth-child(2) {
+.btn-1 span:nth-child(2),
+.btn-2 span:nth-child(2) {
   height: 70px;
   width: 3px;
   top: -70px;
@@ -197,7 +199,8 @@ button span:nth-child(2) {
     top: 70px;
   }
 }
-button span:nth-child(3) {
+.btn-1 span:nth-child(3),
+.btn-2 span:nth-child(3) {
   height: 3px;
   width: 200px;
   right: -200px;
@@ -217,7 +220,8 @@ button span:nth-child(3) {
   }
 }
 
-button span:nth-child(4) {
+.btn-1 span:nth-child(4),
+.btn-2 span:nth-child(4) {
   height: 70px;
   width: 3px;
   bottom: -70px;

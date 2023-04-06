@@ -3,6 +3,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import ToDoMain from "../Pages/ToDoMain/ToDoMain";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
   },
   {
     path: "/todos",
-    element: <ToDoMain></ToDoMain>,
+    element: (
+      <PrivateRoute>
+        <ToDoMain></ToDoMain>
+      </PrivateRoute>
+    ),
   },
 ]);
