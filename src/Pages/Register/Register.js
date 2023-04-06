@@ -72,6 +72,7 @@ const Register = () => {
                     type="text"
                     name="fName"
                     placeholder="Enter your Name"
+                    required
                   />
                 </div>
                 <div className="mt-8">
@@ -83,6 +84,7 @@ const Register = () => {
                     type="email"
                     name="email"
                     placeholder="Enter your email"
+                    required
                   />
                 </div>
                 <div className="mt-8">
@@ -96,6 +98,7 @@ const Register = () => {
                     type="password"
                     name="password"
                     placeholder="Enter your password"
+                    required
                   />
                 </div>
                 <div className="mt-10">
