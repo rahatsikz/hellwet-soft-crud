@@ -49,13 +49,15 @@ const ToDoMain = () => {
   return (
     <div className="container mx-auto my-12">
       <div>
-        <h3 className="text-center font-medium text-xl my-8">
+        <h3 className="text-center font-bold text-xl my-8">
           Welcome {user?.displayName}
         </h3>
         {todos.length > 0 ? (
-          <h4 className="text-center text-lg">Here is your Todo List</h4>
+          <h4 className="text-center text-lg font-medium">
+            Here is your Todo List
+          </h4>
         ) : (
-          <h4 className="text-center text-lg">
+          <h4 className="text-center text-lg font-medium">
             No Todo's Found. Please Add some
           </h4>
         )}
@@ -66,7 +68,7 @@ const ToDoMain = () => {
         ))}
       </div>
       <div>
-        <h4 className="text-center text-lg mt-8">Add New Task</h4>
+        <h4 className="text-center text-lg font-medium mt-8">Add New Task</h4>
       </div>
       <form
         onSubmit={handleAddTodo}
